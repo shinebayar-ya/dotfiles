@@ -1,0 +1,13 @@
+[include]
+  path = ~/.gitconfig.local
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
+[core]
+  pager = delta
+[delta]
+  side-by-side = true
+  line-numbers = true
+  navigate = true
+

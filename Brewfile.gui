@@ -1,0 +1,9 @@
+cask "ghostty"
+cask "raycast"
+cask "visual-studio-code"
+cask "font-jetbrains-mono-nerd-font"
+cask "postman"
+cask "bruno"
+# Optional:
+# cask "docker"
+

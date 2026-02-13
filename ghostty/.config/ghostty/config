@@ -1,0 +1,28 @@
+# Font
+font-family = JetBrains Mono
+font-size = 14
+
+# Cursor
+cursor-style = block
+# cursor-blink = false
+
+# Scroll
+# scrollback-lines = 10000
+
+# Themes
+# theme = Dracula
+theme = Gruvbox Dark
+
+# Background
+background-opacity = 0.7
+background-blur-radius = 16
+
+# Window
+window-padding-x = 6
+window-padding-y = 6
+background-opacity = 0.97
+
+# macOS
+macos-titlebar-style = transparent
+macos-option-as-alt = true
+
