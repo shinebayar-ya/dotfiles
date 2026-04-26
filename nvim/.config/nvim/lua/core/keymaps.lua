@@ -3,11 +3,14 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
--- Map <leader>r to compile and run C++
-keymap.set('n', '<leader>r', [[:w<CR>:!g++ -Wall -Wextra -std=c++17 -o %< % && ./%< <CR>]], { noremap = true })
+-- Added -I/usr/local/include so it finds your debug.h
+local flags = "-std=c++23 -O2 -Wall -Wextra -DLOCAL -I/usr/local/include"
 
--- Map <leader>i to compile and run C++ with input file
-keymap.set('n', '<leader>i', [[:w<CR>:!g++ -Wall -Wextra -std=c++17 -o %< % && ./%< < in <CR>]], { noremap = true })
+-- Compile and Run (Standard)
+keymap.set('n', '<leader>r', [[:w<CR>:!g++-15 ]] .. flags .. [[ -o %< % && ./%< <CR>]], { noremap = true, silent = true })
+
+-- Compile and Run (with 'in' file)
+keymap.set('n', '<leader>i', [[:w<CR>:!g++-15 ]] .. flags .. [[ -o %< % && ./%< < in <CR>]], { noremap = true, silent = true })
 
 -- parenthesis in insert mode
 keymap.set('i', '{', '{}<Left><CR><ESC>ko', { desc = 'double parenthesis' })
@@ -51,3 +54,6 @@ keymap.set('n', 'sh', '<C-w>h')
 keymap.set('n', 'sk', '<C-w>k')
 keymap.set('n', 'sj', '<C-w>j')
 keymap.set('n', 'sl', '<C-w>l')
+
+-- nvim-tree
+keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle file explorer' })

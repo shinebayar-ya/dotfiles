@@ -6,8 +6,8 @@
 	defaultBranch = main
 [core]
   pager = delta
+	excludesfile = /Users/shisoya/.gitignore_global
 [delta]
   side-by-side = true
   line-numbers = true
   navigate = true
-

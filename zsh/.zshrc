@@ -1,3 +1,7 @@
+# zsh completion system (must load before anything calling compdef)
+autoload -Uz compinit
+compinit
+
 # Local overrides (not in git)
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
@@ -20,9 +24,6 @@ eval "$(jenv init -)"
 
 # Starship prompt
 eval "$(starship init zsh)"
-
-# Zoxide
-eval "$(zoxide init --cmd cd zsh)"
 
 # Git Aliases
 alias gs='git status'
@@ -55,7 +56,6 @@ alias ks="kitty +kitten ssh"
 # ------------------------ Start --------------------------
 alias brewupd='brew update && brew upgrade && brew cleanup'
 alias reload='source ~/.zshrc'
-alias ls='ls --color=auto'
 alias poweroff='sudo shutdown -h now'
 
 alias kill8080='lsof -ti:8080 | xargs -r kill -9'
@@ -81,33 +81,26 @@ alias tf-init="terraform init -backend=false"
 alias tf-plan="terraform plan -var-file=local._override.tfvars"
 alias tf-apply="terraform apply -var-file=local._override.tfvars"
 
-# Node (pnpm)
+# Bun
+alias b="bun"
+alias bi="bun install"
+alias bd="bun turbo dev"
+
+# Core
 alias p="pnpm"
-alias pi="pnpm install"
+alias pni="pnpm install"
 alias pa="pnpm add"
 alias pad="pnpm add -D"
-alias pr="pnpm remove"
-alias pu="pnpm update"
 alias px="pnpm exec"
-alias prun="pnpm run"
 
-# Helpers
-alias plint="pnpm run lint"
-alias ptest="pnpm run test"
-alias pbuild="pnpm run build"
+# Scripts
 alias pdev="pnpm run dev"
+alias pbuild="pnpm run build"
 alias pstart="pnpm run start"
-alias pformat="pnpm run format"
 
-alias pl="pnpm list"
-alias plo="pnpm list --depth=0"
-alias pwhy="pnpm why"
-alias pout="pnpm outdated"
-
-# Reset (node)
+# Reset
 alias pclean="rm -rf node_modules pnpm-lock.yaml"
 alias preinstall="pclean && pnpm install"
-
 
 # System
 alias sleepnow="sudo pmset sleepnow"
@@ -153,28 +146,27 @@ fkill() {
   [[ -n "$pid" ]] && kill -9 $pid
 }
 
-# tmux
-t() {
+# zellij
+zj() {
+  [ -n "$ZELLIJ" ] && return
   local dir
-  dir=$(fd --type d --max-depth 3 . ~/code | fzf)
-  [[ -z "$dir" ]] && return
-
-  local name
-  name=$(basename "$dir" | tr . _)
-
-  tmux has-session -t "$name" 2>/dev/null || \
-    tmux new-session -ds "$name" -c "$dir"
-
-  tmux switch-client -t "$name" 2>/dev/null || \
-    tmux attach -t "$name"
+  dir=$(fd --type d --max-depth 3 . ~/Projects ~/Personal 2>/dev/null | tv) || return
+  (cd "$dir" && zellij attach -c "$(basename "$dir" | tr . _)")
 }
 
+alias ls='eza --group-directories-first --icons'
+alias ll='eza -lh --git --icons --group-directories-first'
+alias la='eza -lah --git --icons --group-directories-first'
+alias lt='eza --tree --level=2 --icons'
+export EZA_COLORS="di=34:fi=250:ex=40:ln=44"
+
+# Claude code
+alias cc="claude --dangerously-skip-permissions"
+
+# GNU
+alias g++='g++-15 -std=c++23 -O2 -Wall -Wextra -DLOCAL -I/usr/local/include'
 
 # ------------------------ End ---------------------------
-
-# Nexus
-export MAVEN_USERNAME="admin"
-export MAVEN_PASSWORD="c34jb5dr83j1"
 
 # Add JBang to environment
 alias j!=jbang
@@ -202,3 +194,20 @@ eval "$(mise activate zsh)"
 # direnv
 eval "$(direnv hook zsh)"
 
+
+. "$HOME/.local/bin/env"
+source $HOME/.local/bin/env
+export PATH="$HOME/.local/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/shisoya/.antigravity/antigravity/bin:$PATH"
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Television
+eval "$(tv init zsh)"
+
+# Zoxide
+eval "$(zoxide init --cmd cd zsh)"
