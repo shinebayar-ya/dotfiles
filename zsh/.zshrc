@@ -154,6 +154,17 @@ zj() {
   (cd "$dir" && zellij attach -c "$(basename "$dir" | tr . _)")
 }
 
+zl() {
+    local session
+    
+    session=$(zellij list-sessions -n 2>/dev/null | tv | awk '{print $1}')
+
+    if [[ -n "$session" ]]; then
+        echo "Attaching to: $session..."
+        zellij attach "$session"
+    fi
+}
+
 alias ls='eza --group-directories-first --icons'
 alias ll='eza -lh --git --icons --group-directories-first'
 alias la='eza -lah --git --icons --group-directories-first'
@@ -211,3 +222,4 @@ eval "$(tv init zsh)"
 
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
+source /Users/shisoya/.config/broot/launcher/bash/br

@@ -31,6 +31,8 @@ ui {
 
 keybinds {
     shared_except "locked" {
+        unbind "Alt f"
+
         bind "Alt [" { GoToPreviousTab; }
         bind "Alt ]" { GoToNextTab; }
         bind "Alt 1" { GoToTab 1; }

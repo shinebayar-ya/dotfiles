@@ -26,7 +26,3 @@ background-opacity = 0.97
 macos-titlebar-style = transparent
 macos-option-as-alt = true
 
-# Send Alt+Arrow as xterm CSI modifier seq (zellij tab nav)
-keybind = alt+arrow_left=csi:1;3D
-keybind = alt+arrow_right=csi:1;3C
-
