@@ -26,3 +26,5 @@ background-opacity = 0.97
 macos-titlebar-style = transparent
 macos-option-as-alt = true
 
+# ssh
+# term = xterm-256color

@@ -34,6 +34,7 @@ alias ggff='git push -u origin $(git symbolic-ref --short HEAD) --force-with-lea
 alias gpull='git pull origin'
 alias gpmain='git pull origin main'
 alias ga='git add'
+alias lg='lazygit'
 
 # Docker Aliases
 alias psdocker="docker ps"
@@ -223,3 +224,7 @@ eval "$(tv init zsh)"
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
 source /Users/shisoya/.config/broot/launcher/bash/br
+
+# Atuin
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
