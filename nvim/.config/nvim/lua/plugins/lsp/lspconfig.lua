@@ -44,10 +44,12 @@ return {
     local servers = {
       clangd = {
         cmd = {
-          "clangd",
+          vim.fn.stdpath("data") .. "/mason/bin/clangd",
           "--background-index",
           "--clang-tidy",
-          "--header-insertion=never", 
+          "--header-insertion=never",
+          "--query-driver=/opt/homebrew/bin/g++-15",
+          "--completion-style=detailed",
         },
       },
       html = {},

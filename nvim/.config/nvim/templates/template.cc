@@ -8,19 +8,19 @@ using namespace std;
 #define dbg(...) 42
 #endif
 
-using ll = long long;
-using ld = long double;
+using i64 = long long;
 
 void solve() {
-  
+
 }
 
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  int tt = 1;
-  // cin >> tt;
-  while (tt--) {
+
+  int t = 1;
+  // cin >> t;
+  while (t--) {
     solve();
   }
   return 0;

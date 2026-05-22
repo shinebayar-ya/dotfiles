@@ -12,9 +12,6 @@ keymap.set('n', '<leader>r', [[:w<CR>:!g++-15 ]] .. flags .. [[ -o %< % && ./%< 
 -- Compile and Run (with 'in' file)
 keymap.set('n', '<leader>i', [[:w<CR>:!g++-15 ]] .. flags .. [[ -o %< % && ./%< < in <CR>]], { noremap = true, silent = true })
 
--- parenthesis in insert mode
-keymap.set('i', '{', '{}<Left><CR><ESC>ko', { desc = 'double parenthesis' })
-
 -- use jk to exit insert mode
 keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
 

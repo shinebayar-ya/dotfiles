@@ -1,39 +1,20 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <set>
-#include <map>
-#include <queue>
-#include <stack>
-#include <string>
-#include <bitset>
-#include <numeric>
-#include <cmath>
-#include <iomanip>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-using ll = long long;
-using ld = long double;
-
-#define sz(x) ((int)(x).size())
-#define all(x) (x).begin(), (x).end()
-
-template <typename T>
-void debug(string s, T x) {
-  cerr << s << " = " << x << endl;
-}
+using i64 = long long;
 
 void solve() {
-  
+
 }
 
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  int tt;
-  cin >> tt;
-  while (tt--) {
+
+  int t;
+  cin >> t;
+  while (t--) {
     solve();
   }
   return 0;
