@@ -6,7 +6,7 @@ compinit
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 # Homebrew, MySQL, Python user scripts, Java, jenv
-export PATH="/opt/homebrew/bin:/opt/homebrew/opt/mysql-client/bin:$HOME/Library/Python/3.9/bin:$JAVA_HOME/bin:$HOME/.jenv/bin:$PATH"
+export PATH="/opt/homebrew/bin:/opt/homebrew/opt/mysql-client/bin:$HOME/Library/Python/3.9/bin:$JAVA_HOME/bin:$HOME/.jenv/bin:$HOME/bin:$PATH"
 
 # Optional: CLICOLOR
 export CLICOLOR=1
