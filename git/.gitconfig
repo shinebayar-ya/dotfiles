@@ -11,3 +11,30 @@
   side-by-side = true
   line-numbers = true
   navigate = true
+[interactive]
+  diffFilter = delta --color-only
+[rebase]
+  autosquash = true
+  autostash = true
+[rerere]
+  enabled = true
+[fetch]
+  prune = true
+[push]
+  default = current
+  autoSetupRemote = true
+[diff]
+  algorithm = histogram
+  colorMoved = default
+[merge]
+  conflictstyle = zdiff3
+[commit]
+  verbose = true
+[alias]
+  co = checkout
+  br = branch
+  st = status -sb
+  lg = log --graph --oneline --decorate --all
+  unstage = reset HEAD --
+  amend = commit --amend --no-edit
+  wip = !git add -A && git commit -m 'wip'

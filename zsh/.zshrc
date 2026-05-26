@@ -1,7 +1,3 @@
-# zsh completion system (must load before anything calling compdef)
-autoload -Uz compinit
-compinit
-
 # Local overrides (not in git)
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
@@ -16,10 +12,8 @@ export JAVA_HOME_25="/opt/homebrew/Cellar/openjdk/25.0.1/libexec/openjdk.jdk/Con
 export JAVA_HOME_21="/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
 export JAVA_HOME_17="/opt/homebrew/Cellar/openjdk@17/17.0.17/libexec/openjdk.jdk/Contents/Home"
 
-# Set default Java (e.g., JDK 21)
-# export JAVA_HOME=$JAVA_HOME_21
-# Set default Java (e.g., JDK 17)
-export JAVA_HOME=$JAVA_HOME_17
+# Set default Java (JDK 21 — matches mc/merchant-core project)
+export JAVA_HOME=$JAVA_HOME_21
 eval "$(jenv init -)"
 
 # Starship prompt
@@ -207,12 +201,8 @@ eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)"
 
 
-. "$HOME/.local/bin/env"
-source $HOME/.local/bin/env
+[ -f "$HOME/.local/bin/env" ] && source "$HOME/.local/bin/env"
 export PATH="$HOME/.local/bin:$PATH"
-
-# Added by Antigravity
-export PATH="/Users/shisoya/.antigravity/antigravity/bin:$PATH"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -228,3 +218,12 @@ source /Users/shisoya/.config/broot/launcher/bash/br
 # Atuin
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
+
+# zsh completion system — load LAST so mise/atuin/zoxide/fzf/pnpm completions register first.
+# Cache dump rebuilt only when newer than 24h to keep shell startup fast.
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
