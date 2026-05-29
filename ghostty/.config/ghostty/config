@@ -27,4 +27,7 @@ macos-titlebar-style = transparent
 macos-option-as-alt = true
 
 # ssh
-# term = xterm-256color
+# Auto-inject ghostty terminfo + TERM env into remote sessions.
+# Fixes backspace, arrows, colors on hosts without xterm-ghostty terminfo.
+# Requires shell integration (enabled by default).
+shell-integration-features = ssh-env,ssh-terminfo
