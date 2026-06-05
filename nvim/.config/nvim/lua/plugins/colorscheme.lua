@@ -1,18 +1,11 @@
 return {
-  -- {
-  --   "bluz71/vim-nightfly-guicolors",
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  --   config = function()
-  --     -- load the colorscheme here
-  --     vim.cmd([[colorscheme nightfly]])
-  --   end,
-  -- },
-  { 
-    "ellisonleao/gruvbox.nvim", 
-    priority = 1000 , 
+  {
+    "projekt0n/github-nvim-theme",
+    name = "github-theme",
+    priority = 1000, -- load before other start plugins
     config = function()
-      vim.cmd([[colorscheme gruvbox]])
-    end, 
-    opts = ...
-  }
+      require("github-theme").setup({})
+      vim.cmd([[colorscheme github_light_colorblind]])
+    end,
+  },
 }

@@ -2,7 +2,7 @@
 
 default_mode "normal"
 default_layout "compact"
-theme "gruvbox-dark"
+theme "github-light-colorblind"
 
 // Mouse + clipboard QoL
 mouse_mode true
@@ -26,6 +26,22 @@ ui {
     pane_frames {
         rounded_corners true
         hide_session_name false
+    }
+}
+
+themes {
+    github-light-colorblind {
+        fg "#24292f"
+        bg "#ffffff"
+        black "#24292f"
+        red "#cf222e"
+        green "#0550ae"
+        yellow "#bc4c00"
+        blue "#0969da"
+        magenta "#8250df"
+        cyan "#1b7c83"
+        white "#6e7781"
+        orange "#bc4c00"
     }
 }
 
