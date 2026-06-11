@@ -10,7 +10,11 @@ cursor-style = block
 # scrollback-lines = 10000
 
 # Themes
-theme = Github Light Colorblind
+theme = GitHub Light Colorblind
+
+# Force readable contrast for apps that emit truecolor ANSI tuned for
+# dark backgrounds (e.g. Quarkus/jboss-logmanager log output).
+minimum-contrast = 3
 
 # Background
 background-opacity = 0.95
