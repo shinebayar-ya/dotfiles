@@ -40,3 +40,8 @@
   unstage = reset HEAD --
   amend = commit --amend --no-edit
   wip = !git add -A && git commit -m 'wip'
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -10,7 +10,7 @@ cursor-style = block
 # scrollback-lines = 10000
 
 # Themes
-theme = GitHub Light Colorblind
+theme = iTerm2 Solarized Light
 minimum-contrast = 3
 
 # Background

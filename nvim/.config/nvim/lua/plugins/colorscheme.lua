@@ -1,11 +1,11 @@
 return {
   {
-    "projekt0n/github-nvim-theme",
-    name = "github-theme",
-    priority = 1000, -- load before other start plugins
+    "maxmx03/solarized.nvim",
+    priority = 1000,
     config = function()
-      require("github-theme").setup({})
-      vim.cmd([[colorscheme github_light_colorblind]])
+      vim.o.background = "light"
+      require("solarized").setup({})
+      vim.cmd.colorscheme("solarized")
     end,
   },
 }

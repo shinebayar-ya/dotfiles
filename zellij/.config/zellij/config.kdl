@@ -2,7 +2,7 @@
 
 default_mode "normal"
 default_layout "compact"
-theme "github-light-colorblind"
+theme "solarized-light"
 
 // Mouse + clipboard QoL
 mouse_mode true
@@ -19,42 +19,163 @@ session_serialization true
 serialize_pane_viewport true
 scrollback_lines_to_serialize 10000
 
+// Editor
+scrollback_editor "nvim"
+
 // UI
 pane_frames true
 
 ui {
-    pane_frames {
-        rounded_corners true
-        hide_session_name false
-    }
+  pane_frames {
+    rounded_corners true
+    hide_session_name false
+  }
 }
 
 themes {
-    github-light-colorblind {
-        fg "#24292f"
-        bg "#ffffff"
-        black "#24292f"
-        red "#cf222e"
-        green "#0550ae"
-        yellow "#bc4c00"
-        blue "#0969da"
-        magenta "#8250df"
-        cyan "#1b7c83"
-        white "#6e7781"
-        orange "#bc4c00"
+  solarized-light {
+    // bar
+    text_unselected {
+      base 7 54 66
+      background 238 232 213
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
     }
+    text_selected {
+      base 7 54 66
+      background 253 246 227
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    // ribbons
+    ribbon_unselected {
+      base 7 54 66
+      background 253 246 227
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    ribbon_selected {
+      base 253 246 227
+      background 38 139 210
+      emphasis_0 253 246 227
+      emphasis_1 238 232 213
+      emphasis_2 253 246 227
+      emphasis_3 238 232 213
+    }
+    // tables
+    table_title {
+      base 108 113 196
+      background 0
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    table_cell_unselected {
+      base 7 54 66
+      background 0
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    table_cell_selected {
+      base 7 54 66
+      background 238 232 213
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    // lists
+    list_unselected {
+      base 7 54 66
+      background 0
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    list_selected {
+      base 7 54 66
+      background 238 232 213
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    // frames
+    frame_unselected {
+      base 147 161 161
+      background 0
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    frame_selected {
+      base 38 139 210
+      background 0
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    frame_highlight {
+      base 203 75 22
+      background 0
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    // exit codes
+    exit_code_success {
+      base 38 139 210
+      background 0
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    exit_code_error {
+      base 220 50 47
+      background 0
+      emphasis_0 203 75 22
+      emphasis_1 38 139 210
+      emphasis_2 108 113 196
+      emphasis_3 42 161 152
+    }
+    multiplayer_user_colors {
+      player_1 38 139 210
+      player_2 203 75 22
+      player_3 108 113 196
+      player_4 42 161 152
+      player_5 133 153 0
+      player_6 220 50 47
+      player_7 147 161 161
+      player_8 181 137 0
+      player_9 211 54 130
+      player_10 38 139 210
+    }
+  }
 }
 
 keybinds {
-    shared_except "locked" {
-        unbind "Alt f"
-
-        bind "Alt [" { GoToPreviousTab; }
-        bind "Alt ]" { GoToNextTab; }
-        bind "Alt 1" { GoToTab 1; }
-        bind "Alt 2" { GoToTab 2; }
-        bind "Alt 3" { GoToTab 3; }
-        bind "Alt 4" { GoToTab 4; }
-        bind "Alt 5" { GoToTab 5; }
-    }
+  shared_except "locked" {
+    unbind "Alt f"
+    bind "Alt [" { GoToPreviousTab; }
+    bind "Alt ]" { GoToNextTab; }
+    bind "Alt 1" { GoToTab 1; }
+    bind "Alt 2" { GoToTab 2; }
+    bind "Alt 3" { GoToTab 3; }
+    bind "Alt 4" { GoToTab 4; }
+    bind "Alt 5" { GoToTab 5; }
+  }
 }

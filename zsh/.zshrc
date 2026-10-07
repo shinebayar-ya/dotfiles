@@ -1,11 +1,17 @@
 # Local overrides (not in git)
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
-# Homebrew, MySQL, Python user scripts, Java, jenv
-export PATH="/opt/homebrew/bin:/opt/homebrew/opt/mysql-client/bin:$HOME/Library/Python/3.9/bin:$JAVA_HOME/bin:$HOME/.jenv/bin:$HOME/bin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Apple Silicon (M4) Homebrew, System & User Tools PATH
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/opt/mysql-client/bin:$HOME/Library/Python/3.9/bin:$JAVA_HOME/bin:$HOME/.jenv/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
 # Optional: CLICOLOR
 export CLICOLOR=1
+
+# Editor
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # Java versions
 export JAVA_HOME_25="/opt/homebrew/Cellar/openjdk/25.0.1/libexec/openjdk.jdk/Contents/Home"
@@ -51,13 +57,13 @@ alias ks="kitty +kitten ssh"
 # ------------------------ Start --------------------------
 alias brewupd='brew update && brew upgrade && brew cleanup'
 alias reload='source ~/.zshrc'
-alias poweroff='sudo shutdown -h now'
+alias poweroff='rm -rf ~/Library/Saved\ Application\ State/* && sudo shutdown -h now'
 
 alias kill8080='lsof -ti:8080 | xargs -r kill -9'
 killport() { lsof -ti:$1 | xargs -r kill -9; }
 
 getappid() {
-    osascript -e "id of app \"$1\""
+  osascript -e "id of app \"$1\""
 }
 
 # Switch between JDK versions
@@ -123,7 +129,7 @@ frg() {
   local file
   file=$(rg --line-number --no-heading --color=always "" \
     | fzf --ansi --delimiter : \
-      --preview 'bat --style=numbers --color=always {1} --line-range {2}:+20')
+    --preview 'bat --style=numbers --color=always {1} --line-range {2}:+20')
   [[ -n "$file" ]] && nvim "$(echo "$file" | cut -d: -f1)"
 }
 
@@ -150,27 +156,30 @@ zj() {
 }
 
 zl() {
-    local session
-    
-    session=$(zellij list-sessions -n 2>/dev/null | tv | awk '{print $1}')
+  local session
 
-    if [[ -n "$session" ]]; then
-        echo "Attaching to: $session..."
-        zellij attach "$session"
-    fi
+  session=$(zellij list-sessions -n 2>/dev/null | tv | awk '{print $1}')
+
+  if [[ -n "$session" ]]; then
+    echo "Attaching to: $session..."
+    zellij attach "$session"
+  fi
 }
 
 alias ls='eza --group-directories-first --icons'
 alias ll='eza -lh --git --icons --group-directories-first'
 alias la='eza -lah --git --icons --group-directories-first'
 alias lt='eza --tree --level=2 --icons'
-export EZA_COLORS="di=34:fi=250:ex=40:ln=44"
+# Solarized Light: fg colors only
+export EZA_COLORS="di=38;2;38;139;210:fi=38;2;101;123;131:ex=38;2;203;75;22:ln=38;2;42;161;152"
 
 # Claude code
 alias cc="claude --dangerously-skip-permissions"
 
 # GNU
 alias g++='g++-15 -std=c++23 -O2 -Wall -Wextra -DLOCAL -I/usr/local/include'
+
+alias fn='fd --type f --hidden --no-ignore | tv | xargs nvim'
 
 # ------------------------ End ---------------------------
 
@@ -227,3 +236,11 @@ if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
 else
   compinit -C
 fi
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/shisoya/.local/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/shisoya/.antigravity-ide/antigravity-ide/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

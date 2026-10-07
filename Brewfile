@@ -17,4 +17,5 @@ brew "mise"
 brew "httpie"
 
 brew "shellcheck"
+brew "gitleaks"
 brew "starship"
