@@ -1,0 +1,13 @@
+# GitHub Light Colorblind — atuin theme
+[theme]
+name = "github-light"
+
+[colors]
+AlertInfo = "#0969da"
+AlertWarn = "#bc4c00"
+AlertError = "#cf222e"
+Annotation = "#6e7781"
+Base = "#1f2328"
+Guidance = "#6e7781"
+Important = "#0969da"
+Title = "#8250df"

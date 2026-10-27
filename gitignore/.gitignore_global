@@ -1,0 +1,14 @@
+CLAUDE.md
+cc-*
+phpactor.json
+.phpactor.json
+.claude/
+
+# Local & Scratch
+*.local.*
+_*
+scratch/
+.scratch/
+
+cc-tasks/
+.cc-tasks/
