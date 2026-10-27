@@ -10,7 +10,7 @@ cursor-style = block
 # scrollback-lines = 10000
 
 # Themes
-theme = iTerm2 Solarized Light
+theme = light:iTerm2 Solarized Light,dark:Catppuccin Mocha
 minimum-contrast = 3
 
 # Background

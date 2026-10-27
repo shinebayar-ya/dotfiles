@@ -1,7 +1,7 @@
 // Zellij config
 
 default_mode "normal"
-default_layout "compact"
+default_layout "top"
 theme "solarized-light"
 
 // Mouse + clipboard QoL
