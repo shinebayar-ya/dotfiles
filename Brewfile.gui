@@ -1,7 +1,8 @@
 cask "ghostty"
 cask "raycast"
 cask "visual-studio-code"
-cask "font-jetbrains-mono-nerd-font"
+cask "font-maple-mono-nf"
+cask "font-lilex"
 cask "postman"
 cask "bruno"
 # Optional:

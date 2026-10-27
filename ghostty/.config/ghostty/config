@@ -1,6 +1,7 @@
 # Font
-font-family = JetBrains Mono
-font-size = 12
+font-family = Maple Mono NF
+font-size = 15
+adjust-cell-height = 8%
 
 # Cursor
 cursor-style = block
@@ -10,16 +11,16 @@ cursor-style = block
 # scrollback-lines = 10000
 
 # Themes
-theme = light:iTerm2 Solarized Light,dark:Catppuccin Mocha
-minimum-contrast = 3
+theme = Catppuccin Frappe
+minimum-contrast = 4.5
 
 # Background
 background-opacity = 0.95
 background-blur-radius = 16
 
 # Window
-window-padding-x = 6
-window-padding-y = 6
+window-padding-x = 10
+window-padding-y = 8
 
 # macOS
 macos-titlebar-style = transparent

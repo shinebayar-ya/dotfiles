@@ -11,8 +11,8 @@
   side-by-side = true
   line-numbers = true
   navigate = true
-  light = true
-  syntax-theme = GitHub
+  dark = true
+  syntax-theme = Catppuccin Frappe
 [interactive]
   diffFilter = delta --color-only
 [rebase]

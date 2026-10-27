@@ -170,8 +170,8 @@ alias ls='eza --group-directories-first --icons'
 alias ll='eza -lh --git --icons --group-directories-first'
 alias la='eza -lah --git --icons --group-directories-first'
 alias lt='eza --tree --level=2 --icons'
-# Solarized Light: fg colors only
-export EZA_COLORS="di=38;2;38;139;210:fi=38;2;101;123;131:ex=38;2;203;75;22:ln=38;2;42;161;152"
+# Catppuccin Frappe: fg colors only
+export EZA_COLORS="di=38;2;140;170;238:fi=38;2;198;208;245:ex=38;2;166;209;137:ln=38;2;129;200;190"
 
 # Claude code
 alias cc="claude --dangerously-skip-permissions"
