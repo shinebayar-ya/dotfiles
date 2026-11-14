@@ -151,7 +151,11 @@ fkill() {
 zj() {
   [ -n "$ZELLIJ" ] && return
   local dir
-  dir=$(fd --type d --max-depth 3 . ~/Projects ~/Personal 2>/dev/null | tv) || return
+  dir=$({
+    fd -H --prune -t d -t f -d 12 -E node_modules -E vendor -E target -E .venv -E venv '^\.git$' ~/Projects/{work,labs,tools,archive} ~/Personal | sed 's|/\.git/\{0,1\}$||'
+    fd -t d -d 2 -E node_modules -E venv -E dist -E src . ~/Projects/{tools,labs} | sed 's|/$||'
+    fd -t d -d 1 . ~/Personal | sed 's|/$||'
+  } 2>/dev/null | sort -u | tv) || return
   (cd "$dir" && zellij attach -c "$(basename "$dir" | tr . _)")
 }
 
