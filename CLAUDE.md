@@ -74,7 +74,7 @@ Adding a plugin: drop a new file in `lua/plugins/`. LSP-related: put in `lua/plu
 2. One `path=(...)` block with `typeset -U path` (no other PATH edits), then `JAVA_HOME`/jenv (work)
 3. Aliases (git, docker) + custom block marked `# Start ... # End`; work-only aliases gated by `{{ if eq .profile "work" }}`
 4. Functions: `killport`, `getappid`, `frg`, `fbr`, `fkill`, `zj`/`zl`
-5. Tail: mise, direnv, tv, zoxide, broot, atuin, then `compinit` LAST
+5. Tail: `compinit` FIRST (tv and zoxide call `compdef` at init), then mise, direnv, tv, zoxide, broot, atuin
 
 `~/.zprofile` (`dot_zprofile`) only sources OrbStack init.
 

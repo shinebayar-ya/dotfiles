@@ -19,7 +19,7 @@
     ├── private_dot_ssh/config.tmpl
     ├── dot_claude/   CLAUDE.md, rules, commands, agents, skills, themes, own hooks, settings merge
     ├── dot_codex/    AGENTS.md, keybindings.json
-    └── dot_config/   nvim ghostty zellij kitty zed aerospace karabiner herdr opencode
+    └── dot_config/   nvim ghostty zellij kitty zed aerospace karabiner herdr herdr-app (keys, settings) opencode
                       atuin bat broot gh mise starship television topgrade
 ```
 

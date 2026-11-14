@@ -31,8 +31,8 @@ export VISUAL="nvim"
 # Java (default JDK 21 for merchant-core)
 export JAVA_HOME_17="$HOMEBREW_PREFIX/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
 export JAVA_HOME_21="$HOMEBREW_PREFIX/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
-export JAVA_HOME=$JAVA_HOME_21
 eval "$(jenv init -)"
+export JAVA_HOME=$JAVA_HOME_21
 {{ end }}
 eval "$(starship init zsh)"
 
@@ -205,6 +205,15 @@ alias j!=jbang
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f "$HOME/.local/bin/env" ] && source "$HOME/.local/bin/env"
 
+# zsh completion system — before tool hooks: tv/zoxide call compdef at init.
+# Cache dump rebuilt only when newer than 24h to keep shell startup fast.
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
 # Tool hooks
 eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)"
@@ -213,12 +222,3 @@ eval "$(zoxide init --cmd cd zsh)"
 [ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
 [ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
-
-# zsh completion system — load LAST so mise/atuin/zoxide/fzf/pnpm completions register first.
-# Cache dump rebuilt only when newer than 24h to keep shell startup fast.
-autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi

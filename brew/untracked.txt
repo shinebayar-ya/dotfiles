@@ -19,5 +19,4 @@ radare2
 socat
 wireshark
 xmlstarlet
-stow
 windsurf
