@@ -1,0 +1,16 @@
+# Added by OrbStack: 'orb' SSH host for Linux machines
+# This only works if it's at the top of ssh_config (before any Host blocks).
+# This won't be added again if you remove it.
+Include ~/.orbstack/ssh/config
+
+{{ if eq .profile "work" -}}
+Host lendbeta
+    HostName 172.31.29.62
+    User shinebayar
+    IdentityFile ~/.ssh/id_ed25519
+
+{{ end -}}
+Host github.com
+    HostName github.com
+    User shinebayar
+    IdentityFile ~/.ssh/id_ed25519_github

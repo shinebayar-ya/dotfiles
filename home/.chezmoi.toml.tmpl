@@ -1,0 +1,11 @@
+{{- $profile := env "DOTFILES_PROFILE" -}}
+{{- if not $profile -}}
+{{-   $profile = promptChoiceOnce . "profile" "Machine profile" (list "work" "home") -}}
+{{- end -}}
+{{- if not (has $profile (list "work" "home")) -}}
+{{-   fail (printf "DOTFILES_PROFILE must be work or home, got %q" $profile) -}}
+{{- end -}}
+sourceDir = {{ joinPath .chezmoi.homeDir "dotfiles" | quote }}
+
+[data]
+  profile = {{ $profile | quote }}

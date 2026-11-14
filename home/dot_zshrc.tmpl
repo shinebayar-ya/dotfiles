@@ -1,0 +1,224 @@
+# Local overrides and secrets (untracked)
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+# PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PNPM_HOME="$HOME/Library/pnpm"
+typeset -U path
+path=(
+{{- if eq .profile "work" }}
+  /opt/homebrew/opt/libpq/bin
+{{- end }}
+  $HOME/.antigravity-ide/antigravity-ide/bin
+  $HOME/.local/bin
+  $PNPM_HOME
+  $HOME/.opencode/bin
+  $HOME/.antigravity/antigravity/bin
+  $HOME/.jbang/bin
+{{- if eq .profile "work" }}
+  /opt/homebrew/opt/mysql-client/bin
+  $HOME/.jenv/bin
+{{- end }}
+  $HOME/Library/Python/3.9/bin
+  $HOME/bin
+  $path
+)
+
+export CLICOLOR=1
+export EDITOR="nvim"
+export VISUAL="nvim"
+{{ if eq .profile "work" }}
+# Java (default JDK 21 for merchant-core)
+export JAVA_HOME_17="$HOMEBREW_PREFIX/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export JAVA_HOME_21="$HOMEBREW_PREFIX/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+export JAVA_HOME=$JAVA_HOME_21
+eval "$(jenv init -)"
+{{ end }}
+eval "$(starship init zsh)"
+
+# Git Aliases
+alias gs='git status'
+alias gsw='git switch'
+alias glog='git log --oneline'
+alias gg='git push -u origin $(git symbolic-ref --short HEAD)'
+alias ggff='git push -u origin $(git symbolic-ref --short HEAD) --force-with-lease'
+alias gpull='git pull origin'
+alias gpmain='git pull origin main'
+alias ga='git add'
+alias lg='lazygit'
+
+# Docker Aliases
+alias psdocker="docker ps"
+alias psadocker="docker ps -a"
+alias attachdocker="docker attach"
+alias execdocker="docker exec -it"
+alias logsdocker="docker logs -f"
+alias rmdocker="docker rm -f"
+alias imagesdocker="docker images"
+alias rmidocker="docker rmi -f"
+alias updocker="docker-compose up -d"
+alias startdocker="docker-compose start"
+alias dddocker="docker-compose down"
+alias resdocker="docker-compose restart"
+
+# Kitty ssh
+alias ks="kitty +kitten ssh"
+
+# Custom aliases (add here!)
+# ------------------------ Start --------------------------
+alias brewupd='brew update && brew upgrade && brew cleanup'
+alias reload='source ~/.zshrc'
+alias poweroff='rm -rf ~/Library/Saved\ Application\ State/* && sudo shutdown -h now'
+
+alias kill8080='lsof -ti:8080 | xargs -r kill -9'
+killport() { lsof -ti:$1 | xargs -r kill -9; }
+
+getappid() {
+  osascript -e "id of app \"$1\""
+}
+
+{{ if eq .profile "work" }}
+# Java / Quarkus
+alias usejdk17='export JAVA_HOME=$JAVA_HOME_17 && export PATH=$JAVA_HOME/bin:$PATH'
+alias usejdk21='export JAVA_HOME=$JAVA_HOME_21 && export PATH=$JAVA_HOME/bin:$PATH'
+alias qd="./mvnw quarkus:dev"
+{{ end }}
+
+# Antigravity IDE
+alias ag="antigravity"
+
+{{ if eq .profile "work" }}
+# Terraform
+alias tf-init="terraform init -backend=false"
+alias tf-plan="terraform plan -var-file=local._override.tfvars"
+alias tf-apply="terraform apply -var-file=local._override.tfvars"
+{{ end }}
+
+# Bun
+alias b="bun"
+alias bi="bun install"
+alias bd="bun turbo dev"
+
+# Core
+alias p="pnpm"
+alias pni="pnpm install"
+alias pa="pnpm add"
+alias pad="pnpm add -D"
+alias px="pnpm exec"
+
+# Scripts
+alias pdev="pnpm run dev"
+alias pbuild="pnpm run build"
+alias pstart="pnpm run start"
+
+# Reset
+alias pclean="rm -rf node_modules pnpm-lock.yaml"
+alias preinstall="pclean && pnpm install"
+
+# System
+alias sleepnow="sudo pmset sleepnow"
+
+alias ocreview='opencode -p "MODE: REVIEW-ONLY
+
+Rules:
+- Do NOT edit files.
+- Do NOT run commands.
+- Analysis and reasoning only.
+
+Task:"'
+
+alias ocexec='opencode -p "MODE: EXECUTE-ONLY
+
+Rules:
+- Execute the approved plan exactly.
+- Do NOT introduce new design decisions.
+- Ask before unapproved steps.
+
+Task:"'
+
+# fzf
+frg() {
+  local file
+  file=$(rg --line-number --no-heading --color=always "" \
+    | fzf --ansi --delimiter : \
+    --preview 'bat --style=numbers --color=always {1} --line-range {2}:+20')
+  [[ -n "$file" ]] && nvim "$(echo "$file" | cut -d: -f1)"
+}
+
+alias ff='fd --type f | fzf --preview "bat --style=numbers --color=always {}"'
+
+fbr() {
+  local branch
+  branch=$(git branch --all | sed "s/.* //" | sed "s#remotes/[^/]*/##" | sort -u | fzf)
+  [[ -n "$branch" ]] && git checkout "$branch"
+}
+
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+  [[ -n "$pid" ]] && kill -9 $pid
+}
+
+# zellij
+zj() {
+  [ -n "$ZELLIJ" ] && return
+  local dir
+  dir=$({
+    fd -H --prune -t d -t f -d 12 -E node_modules -E vendor -E target -E .venv -E venv '^\.git$' ~/Projects/{work,labs,tools,archive} ~/Personal | sed 's|/\.git/\{0,1\}$||'
+    fd -t d -d 2 -E node_modules -E venv -E dist -E src . ~/Projects/{tools,labs} | sed 's|/$||'
+    fd -t d -d 1 . ~/Personal | sed 's|/$||'
+  } 2>/dev/null | sort -u | tv) || return
+  (cd "$dir" && zellij attach -c "$(basename "$dir" | tr . _)")
+}
+
+zl() {
+  local session
+
+  session=$(zellij list-sessions -n 2>/dev/null | tv | awk '{print $1}')
+
+  if [[ -n "$session" ]]; then
+    echo "Attaching to: $session..."
+    zellij attach "$session"
+  fi
+}
+
+alias ls='eza --group-directories-first --icons'
+alias ll='eza -lh --git --icons --group-directories-first'
+alias la='eza -lah --git --icons --group-directories-first'
+alias lt='eza --tree --level=2 --icons'
+# Catppuccin Frappe: fg colors only
+export EZA_COLORS="di=38;2;140;170;238:fi=38;2;198;208;245:ex=38;2;166;209;137:ln=38;2;129;200;190"
+
+# Claude code
+alias cc="claude --dangerously-skip-permissions"
+
+# GNU
+alias g++='g++-15 -std=c++23 -O2 -Wall -Wextra -DLOCAL -I/usr/local/include'
+
+alias fn='fd --type f --hidden --no-ignore | tv | xargs nvim'
+
+# ------------------------ End ---------------------------
+
+# JBang
+alias j!=jbang
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "$HOME/.local/bin/env" ] && source "$HOME/.local/bin/env"
+
+# Tool hooks
+eval "$(mise activate zsh)"
+eval "$(direnv hook zsh)"
+eval "$(tv init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+[ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
+# zsh completion system — load LAST so mise/atuin/zoxide/fzf/pnpm completions register first.
+# Cache dump rebuilt only when newer than 24h to keep shell startup fast.
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi

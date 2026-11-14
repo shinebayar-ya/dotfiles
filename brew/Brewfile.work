@@ -1,0 +1,56 @@
+# Work machine, on top of shared
+
+# Java
+brew "jenv"
+brew "openjdk@17"
+brew "openjdk@21"
+brew "protobuf"
+brew "flyway"
+
+# Databases
+brew "mysql-client"
+brew "redis"
+
+# Containers and Kubernetes
+brew "docker"
+brew "docker-compose"
+brew "docker-credential-helper"
+brew "lazydocker"
+brew "kubernetes-cli"
+brew "k9s"
+brew "helm"
+brew "argocd"
+
+# Cloud and infra
+tap "hashicorp/tap"
+tap "localstack/tap"
+tap "oven-sh/bun"
+brew "hashicorp/tap/terraform"
+brew "localstack/tap/localstack-cli"
+brew "oven-sh/bun/bun"
+brew "awscli"
+brew "ansible"
+brew "flyctl"
+brew "caddy"
+brew "certbot"
+brew "openfortivpn"
+brew "sshpass"
+brew "mcp-grafana"
+
+# Other work tooling
+brew "glab"
+brew "php"
+brew "cocoapods"
+brew "mas"
+
+tap "ngrok/ngrok"
+cask "ngrok"
+cask "postman"
+cask "dbeaver-community"
+cask "beekeeper-studio"
+cask "redis-insight"
+cask "android-studio"
+cask "microsoft-teams"
+cask "slack"
+cask "figma"
+cask "devin-desktop"

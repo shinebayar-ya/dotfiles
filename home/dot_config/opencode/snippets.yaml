@@ -1,0 +1,12 @@
+review: |
+  MODE: REVIEW-ONLY
+  Rules:
+  - Do NOT edit files.
+  - Do NOT run commands.
+  - Analysis only.
+
+exec: |
+  MODE: EXECUTE-ONLY
+  Rules:
+  - Execute approved plan only.
+  - Ask before extra steps.

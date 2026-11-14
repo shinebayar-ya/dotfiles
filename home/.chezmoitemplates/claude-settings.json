@@ -1,0 +1,21 @@
+{
+  "attribution": {"commit": "", "pr": ""},
+  "editorMode": "vim",
+  "tui": "fullscreen",
+  "theme": "custom:catppuccin-frappe",
+  "model": "sonnet",
+  "skipDangerousModePermissionPrompt": true,
+  "env": {"ENABLE_TOOL_SEARCH": "true"},
+  "statusLine": {"type": "command", "command": "bash \"{{ .chezmoi.homeDir }}/.claude/hooks/combined-statusline.sh\""},
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "context-mode@context-mode": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {"source": {"source": "github", "repo": "JuliusBrussee/caveman"}},
+    "context-mode": {"source": {"source": "github", "repo": "mksglu/context-mode"}},
+    "addy-agent-skills": {"source": {"source": "github", "repo": "addyosmani/agent-skills"}},
+    "ponytail": {"source": {"source": "github", "repo": "DietrichGebert/ponytail"}}
+  }
+}

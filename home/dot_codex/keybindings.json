@@ -1,0 +1,6 @@
+[
+  {
+    "command": "deleteChat",
+    "key": "Command+Shift+Delete"
+  }
+]

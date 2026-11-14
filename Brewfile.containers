@@ -1,6 +1,0 @@
-
-brew "docker-compose"
-# Use Colima:
-# brew "colima"
-# Use docker TUI:
-# brew "ctop"

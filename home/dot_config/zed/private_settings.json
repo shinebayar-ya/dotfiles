@@ -1,0 +1,106 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "git_panel": {
+    "dock": "right"
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Mocha",
+    "dark": "Catppuccin Mocha"
+  },
+  "cli_default_open_behavior": "existing_window",
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
+  "vim_mode": true,
+  "relative_line_numbers": "enabled",
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": true,
+      "delay_ms": 600
+    }
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "light",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Frappé",
+  },
+  "format_on_save": "on",
+  "terminal": {
+    "font_family": "JetBrainsMono Nerd Font",
+  },
+  "tabs": {
+    "git_status": true,
+    "file_icons": true,
+  },
+  "current_line_highlight": "none",
+  "languages": {
+    "TypeScript": {
+      "inlay_hints": {
+        "enabled": false
+      },
+      "indent_guides": {
+        
+      }
+    },
+    "Java": {
+      "tab_size": 2,
+      "formatter": "language_server",
+      "code_actions_on_format": {
+        "source.organizeImports.jdtls": true,
+      },
+    },
+  },
+  "lsp": {
+    "jdtls": {
+      "settings": {
+        "java_home": "/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home",
+      },
+      "initialization_options": {
+        "settings": {
+          "java": {
+            "format": {
+              "settings": {
+                "url": "src/main/resources/eclipse-format.xml",
+                "profile": "Quarkus",
+              },
+            },
+            "completion": {
+              "importOrder": ["java", "javax", "jakarta", "org", "com"],
+            },
+            "sources": {
+              "organizeImports": {
+                "starThreshold": 99,
+                "staticStarThreshold": 99,
+              },
+            },
+          },
+        },
+        "vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx16G -Xms100m -Xlog:disable",
+      },
+    },
+  },
+}

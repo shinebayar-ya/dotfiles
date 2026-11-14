@@ -1,0 +1,3 @@
+# Global ignore skips these in every repo; they are tracked here on purpose
+!CLAUDE.md
+!.claude/

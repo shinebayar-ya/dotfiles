@@ -1,0 +1,19 @@
+onboarding = false
+
+[theme]
+name = "terminal"
+auto_switch = false
+
+# Zellij-style alt chords
+[keys]
+focus_pane_left = ["prefix+h", "alt+h"]
+focus_pane_down = ["prefix+j", "alt+j"]
+focus_pane_up = ["prefix+k", "alt+k"]
+focus_pane_right = ["prefix+l", "alt+l"]
+split_vertical = ["prefix+v", "alt+n"]
+split_horizontal = ["prefix+minus", "alt+shift+n"]
+previous_tab = ["prefix+p", "alt+["]
+next_tab = ["prefix+n", "alt+]"]
+move_tab_previous = "alt+i"
+move_tab_next = "alt+o"
+switch_tab = ["prefix+1..9", "alt+1..9"]

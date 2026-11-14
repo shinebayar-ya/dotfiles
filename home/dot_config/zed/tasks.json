@@ -1,0 +1,34 @@
+// Project tasks configuration. See https://zed.dev/docs/tasks for documentation.
+[
+  {
+    "label": "Open Lazygit",
+    "command": "lazygit",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "Quarkus dev",
+    "command": "./mvnw quarkus:dev",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Spotless apply",
+    "command": "./mvnw spotless:apply",
+    "reveal": "no_focus",
+    "save": "all"
+  },
+  {
+    "label": "Maven test class",
+    "command": "./mvnw test -Dtest=$ZED_SYMBOL",
+    "tags": ["java-test"],
+    "save": "all"
+  },
+  {
+    "label": "Compile (skip tests)",
+    "command": "./mvnw -q -DskipTests compile",
+    "reveal": "always",
+    "save": "all"
+  }
+]

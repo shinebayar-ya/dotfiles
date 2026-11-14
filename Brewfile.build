@@ -1,6 +1,0 @@
-brew "make"
-brew "protobuf"
-# Uncomment if/when needed:
-# brew "cmake"
-# brew "ninja"
-# brew "llvm"

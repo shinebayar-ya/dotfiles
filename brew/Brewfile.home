@@ -1,0 +1,12 @@
+# Home machine, on top of shared
+
+cask "obsidian"
+cask "spotify"
+cask "steam"
+cask "discord"
+cask "telegram"
+cask "viber"
+cask "arc"
+cask "zen"
+cask "helium-browser"
+cask "comet"

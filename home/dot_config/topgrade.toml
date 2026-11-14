@@ -1,0 +1,20 @@
+[misc]
+# Disable slow or failing steps
+disable = [
+    "system",       # Skip macOS system update (10+ min)
+    "git_repos",    # Skip scanning all local git repos (14+ min)
+    "containers",   # Skip pulling Docker images
+    "helm"          # Skip failing Helm updates
+]
+
+# Prompt for sudo password at start to prevent blocking
+pre_sudo = true
+
+[git]
+# Stop auto-detecting all git repositories
+pull_predefined = false
+
+# Optional: Specify exact folders to update
+# repos = [
+#     "~/Projects/*"
+# ]

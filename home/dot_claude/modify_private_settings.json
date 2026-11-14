@@ -1,0 +1,12 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Merges portable keys into the live file. permissions, other plugins and tool-written hooks stay local. */ -}}
+{{- $cur := dict -}}
+{{- with get .chezmoi "stdin" }}{{ $cur = . | fromJson }}{{ end -}}
+{{- $cur = mergeOverwrite $cur (includeTemplate "claude-settings.json" . | fromJson) -}}
+{{- $hooks := get $cur "hooks" | default dict -}}
+{{- $pre := get $hooks "PreToolUse" | default list -}}
+{{- if not (contains "strip-ai-attribution" (toJson $pre)) -}}
+{{-   $_ := set $hooks "PreToolUse" (append $pre (dict "matcher" "Bash" "hooks" (list (dict "type" "command" "command" (print .chezmoi.homeDir "/.claude/hooks/strip-ai-attribution.sh") "if" "Bash(git commit*)" "timeout" 5)))) -}}
+{{-   $_ := set $cur "hooks" $hooks -}}
+{{- end -}}
+{{- $cur | toPrettyJson }}

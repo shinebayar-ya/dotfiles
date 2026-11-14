@@ -1,0 +1,23 @@
+# Installed here on purpose, not managed by any manifest
+binwalk
+catimg
+chafa
+ffmpeg
+gobuster
+graphicsmagick
+hydra
+imagemagick
+iproute2mac
+john-jumbo
+llvm
+masscan
+netcat
+nmap
+ollama
+pgpdump
+radare2
+socat
+wireshark
+xmlstarlet
+stow
+windsurf
